@@ -124,6 +124,7 @@ footer { padding-block: 28px 44px; font: 400 .85rem var(--f-ui); color: var(--mu
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 </style>
 <!-- analytics:start -->
+<!-- Google tag (gtag.js) + consenso -->
 <script>
 (function(){
   if(!/(^|\.)namsat\.github\.io$/.test(location.hostname))return;
@@ -132,7 +133,6 @@ footer { padding-block: 28px 44px; font: 400 .85rem var(--f-ui); color: var(--mu
   var c=null;try{c=localStorage.getItem(K)}catch(e){}
   gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:c==='y'?'granted':'denied'});
   gtag('js',new Date());gtag('config',ID);
-  var s=d.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;d.head.appendChild(s);
   var it=(d.documentElement.lang||'').slice(0,2)==='it';
   var T=it?{m:'Uso Google Analytics per contare le visite in forma aggregata. Niente pubblicità, niente profilazione.',y:'Accetta',n:'Rifiuta',p:'Preferenze cookie'}
           :{m:'I use Google Analytics to count visits in aggregate. No ads, no profiling.',y:'Accept',n:'Decline',p:'Cookie preferences'};
@@ -161,6 +161,7 @@ footer { padding-block: 28px 44px; font: 400 .85rem var(--f-ui); color: var(--mu
   if(d.readyState==='loading')d.addEventListener('DOMContentLoaded',ready);else ready();
 })();
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EHDDLEJ30T"></script>
 <!-- analytics:end -->
 </head>
 <body>
