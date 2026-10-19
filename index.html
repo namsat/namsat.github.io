@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Satnam Singh</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Satnam Singh, M.Sc. student in Micro and Nanotechnologies for Integrated Systems (Politecnico di Torino, Grenoble INP-Phelma, EPFL). Projects, studies and contact.">
+<meta name="author" content="Satnam Singh">
+<link rel="canonical" href="https://namsat.github.io/">
+<meta property="og:title" content="Satnam Singh">
+<meta property="og:description" content="M.Sc. student in Micro and Nanotechnologies for Integrated Systems. Projects: interactive physics notes and a predator–prey model explorer.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://namsat.github.io/">
+<meta property="og:image" content="https://namsat.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Satnam Singh","url":"https://namsat.github.io/","jobTitle":"M.Sc. student","alumniOf":{"@type":"CollegeOrUniversity","name":"Politecnico di Torino"},"affiliation":[{"@type":"CollegeOrUniversity","name":"Politecnico di Torino"},{"@type":"CollegeOrUniversity","name":"Grenoble INP - Phelma"},{"@type":"CollegeOrUniversity","name":"EPFL"}],"sameAs":["https://www.linkedin.com/in/satnam-singh-7aa56930b","https://github.com/namsat"]}</script>
+<script>try{var t=localStorage.getItem('ss-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: one column (~70ch) for the person, a wide band for projects with live previews.
+   Same family as the project sites: graph-paper ground, ink blue, mono numerals. */
+:root {
+  --paper: #fbfcfd; --surface: #f1f4f8; --ink: #18212d; --muted: #5b6878; --rule: #d9e0e8;
+  --grid: rgba(35, 80, 160, .07); --accent: #2443a6; --accent-soft: #e6ebf8; --red: #c23a2f;
+  --sp1: #13866f; --sp2: #d2462f; --sp3: #b7860b;
+  --shadow: 0 1px 2px rgba(20,35,60,.06), 0 14px 34px -18px rgba(20,35,60,.28);
+  --f-body: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+  --f-ui: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0f141b; --surface: #161d27; --ink: #e2e7ee; --muted: #94a2b4; --rule: #273242; --grid: rgba(140,170,255,.06);
+  --accent: #93abff; --accent-soft: #1d2741; --red: #ff8a7a; --sp1: #3cc9a6; --sp2: #ff7a5c; --sp3: #f0c04a;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 14px 34px -18px rgba(0,0,0,.75); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #0f141b; --surface: #161d27; --ink: #e2e7ee; --muted: #94a2b4; --rule: #273242; --grid: rgba(140,170,255,.06);
+  --accent: #93abff; --accent-soft: #1d2741; --red: #ff8a7a; --sp1: #3cc9a6; --sp2: #ff7a5c; --sp3: #f0c04a;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 14px 34px -18px rgba(0,0,0,.75); color-scheme: dark; }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.65 var(--f-body); }
+a { color: var(--accent); text-underline-offset: .18em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.narrow { max-width: 44rem; }
+
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 18px; }
+.mark { font: 500 .85rem var(--f-mono); color: var(--muted); text-decoration: none; }
+.top nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.top nav a { font: 500 .92rem var(--f-ui); color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 6px; }
+.top nav a:hover { color: var(--ink); background: var(--surface); }
+.theme { width: 34px; height: 34px; display: grid; place-items: center; border: 0; background: none; color: var(--muted); border-radius: 8px; cursor: pointer; }
+.theme:hover { background: var(--surface); color: var(--ink); }
+.theme svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+
+.hero { padding-block: 56px 40px; }
+.hero h1 { margin: 0 0 14px; font: 700 clamp(2.8rem, 1.8rem + 4vw, 4.6rem)/1 var(--f-ui); letter-spacing: -.02em; }
+.role { margin: 0 0 22px; font: 500 1.15rem/1.45 var(--f-ui); color: var(--muted); }
+.role b { color: var(--ink); font-weight: 600; }
+.lede { margin: 0 0 26px; font-size: 1.12rem; max-width: 40rem; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.links a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1.5px solid var(--rule); border-radius: 8px; font: 600 .92rem var(--f-ui); color: var(--ink); text-decoration: none; background: var(--paper); }
+.links a:hover { border-color: var(--accent); color: var(--accent); }
+.links a.primary { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+.links svg { width: 16px; height: 16px; fill: currentColor; }
+
+.sec { padding-block: 48px 8px; }
+.sec-h { display: flex; align-items: baseline; gap: 12px; margin: 0 0 20px; font: 700 1.5rem var(--f-ui); }
+.sec-h span { font: 500 .85rem var(--f-mono); color: var(--red); }
+
+/* projects */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.proj { display: flex; flex-direction: column; border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; text-decoration: none; color: var(--ink); background: var(--paper); transition: transform .2s ease, box-shadow .2s ease, border-color .2s; }
+.proj:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--accent); }
+.proj canvas { display: block; width: 100%; aspect-ratio: 16 / 9; border-bottom: 1px solid var(--rule); }
+.proj-b { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.proj-k { font: 500 .78rem var(--f-mono); color: var(--red); }
+.proj-t { font: 700 1.3rem/1.2 var(--f-ui); }
+.proj-d { font-size: .97rem; line-height: 1.5; color: var(--muted); }
+.proj-f { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tags span { font: 500 .74rem var(--f-mono); color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 1px 8px; }
+.go { font: 600 .92rem var(--f-ui); color: var(--accent); white-space: nowrap; }
+.proj:hover .go { text-decoration: underline; }
+.soon { margin-top: 18px; border: 1.5px dashed var(--rule); border-radius: 14px; padding: 16px 18px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center; }
+.soon canvas { width: 160px; height: 90px; display: block; }
+.soon p { margin: 0; }
+.soon .proj-k { display: block; margin-bottom: 2px; }
+
+/* timeline */
+.tl { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--rule); }
+.tl li { position: relative; padding: 0 0 24px 22px; }
+.tl li::before { content: ""; position: absolute; left: -7px; top: .45em; width: 12px; height: 12px; border-radius: 50%; background: var(--paper); border: 2px solid var(--accent); }
+.tl li.now::before { background: var(--accent); }
+.tl .when { font: 500 .82rem var(--f-mono); color: var(--muted); }
+.tl h3 { margin: 2px 0 2px; font: 700 1.1rem/1.3 var(--f-ui); }
+.tl .where { margin: 0 0 6px; font: 500 .95rem var(--f-ui); color: var(--muted); }
+.tl p { margin: 0 0 .4em; }
+
+.facts { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 8px 18px; margin: 0; }
+.facts dt { font: 600 .9rem var(--f-ui); color: var(--muted); padding-top: .15em; }
+.facts dd { margin: 0; }
+
+.contact { margin-top: 56px; padding: 26px 24px; border: 1px solid var(--rule); border-radius: 14px; background: var(--surface);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 18px 18px; }
+.contact h2 { margin: 0 0 6px; font: 700 1.4rem var(--f-ui); }
+.contact p { margin: 0 0 14px; max-width: 38rem; }
+.mail { font: 500 1rem var(--f-mono); user-select: all; }
+.copy { margin-left: 8px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); border-radius: 6px; padding: 3px 9px; font: 500 .8rem var(--f-ui); cursor: pointer; }
+footer { padding-block: 28px 44px; font: 400 .85rem var(--f-ui); color: var(--muted); }
+
+@media (max-width: 760px) {
+  .projects { grid-template-columns: minmax(0, 1fr); }
+  .top nav a.hide-sm { display: none; }
+  .facts { grid-template-columns: minmax(0, 1fr); gap: 2px 0; }
+  .facts dd { margin-bottom: 10px; }
+  .soon { grid-template-columns: minmax(0, 1fr); }
+  .soon canvas { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#">namsat.github.io</a>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#studies" class="hide-sm">Studies</a>
+      <a href="#experience" class="hide-sm">Experience</a>
+      <a href="#contact">Contact</a>
+      <button class="theme" id="theme" aria-label="Toggle dark mode"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="4"/><path d="M10 1.5v2M10 16.5v2M1.5 10h2M16.5 10h2M4 4l1.4 1.4M14.6 14.6 16 16M4 16l1.4-1.4M14.6 5.4 16 4"/></svg></button>
+    </nav>
+  </header>
+
+  <section class="hero narrow">
+    <h1>Satnam Singh</h1>
+    <p class="role"><b>M.Sc. student</b> in Micro and Nanotechnologies for Integrated Systems<br>Politecnico di Torino · Grenoble INP-Phelma · EPFL</p>
+    <p class="lede">I graduated in Physical Engineering at Politecnico di Torino and I'm now in the first year of the MNIS master's. I'm interested in semiconductor devices and integrated circuits, and I'm looking for an internship where I can learn how they are designed, made and tested in practice.</p>
+    <div class="links">
+      <a class="primary" href="#contact">Get in touch</a>
+      <a href="https://www.linkedin.com/in/satnam-singh-7aa56930b" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.35-.03-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98V21H9z"/></svg>LinkedIn</a>
+      <a href="https://github.com/namsat" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.26.8-.58v-2.03c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.2.69.8.58A12 12 0 0 0 12 .5z"/></svg>GitHub</a>
+    </div>
+  </section>
+
+  <section class="sec" id="projects" aria-labelledby="h-proj">
+    <h2 class="sec-h" id="h-proj"><span>01</span>Projects</h2>
+    <div class="projects">
+      <a class="proj" href="https://namsat.github.io/lotka-volterra/" target="_blank" rel="noopener">
+        <canvas id="pv-lv" aria-label="Animated preview: predator–prey orbit and population curves"></canvas>
+        <div class="proj-b">
+          <span class="proj-k">Bachelor's thesis, made interactive</span>
+          <span class="proj-t">The predator–prey model</span>
+          <span class="proj-d">From ODE theory, linearisation and Lyapunov functions to the Lotka–Volterra model and its n-species generalisation. Every chapter has simulations you can play with: a rotatable Lyapunov surface, phase portraits, a 3D three-species system.</span>
+          <span class="proj-f"><span class="tags"><span>dynamical systems</span><span>RK4</span><span>2D · 3D</span></span><span class="go">Open →</span></span>
+        </div>
+      </a>
+      <a class="proj" href="https://namsat.github.io/fisica1/" target="_blank" rel="noopener">
+        <canvas id="pv-f1" aria-label="Animated preview: projectile trajectories from the physics notes"></canvas>
+        <div class="proj-b">
+          <span class="proj-k">Lecture notes</span>
+          <span class="proj-t">Physics I notes</span>
+          <span class="proj-d">The notes I wrote for first-year physics, from kinematics to thermodynamics, turned into a searchable website with numbered equations and figures and a small projectile simulator.</span>
+          <span class="proj-f"><span class="tags"><span>14 chapters</span><span>786 equations</span><span>Italian</span></span><span class="go">Open →</span></span>
+        </div>
+      </a>
+    </div>
+    <div class="soon">
+      <canvas id="pv-pn" aria-label="Sketch of a p-n junction band diagram"></canvas>
+      <p><span class="proj-k">In progress</span>Device simulations in COMSOL: p-n junction, BJT and MOSFET, each compared with the analytical model it should reproduce.</p>
+    </div>
+  </section>
+
+  <section class="sec narrow" id="studies" aria-labelledby="h-st">
+    <h2 class="sec-h" id="h-st"><span>02</span>Studies</h2>
+    <ol class="tl">
+      <li class="now">
+        <span class="when">Sep 2026 – present</span>
+        <h3>M.Sc. in Micro and Nanotechnologies for Integrated Systems (MNIS)</h3>
+        <p class="where">Joint programme: Politecnico di Torino · Grenoble INP-Phelma · EPFL</p>
+        <p>Semiconductor device physics, analog and mixed-signal circuit design, nanoelectronics and microsystems, across Turin, Grenoble and Lausanne.</p>
+      </li>
+      <li>
+        <span class="when">Oct 2023 – Jul 2026</span>
+        <h3>B.Sc. in Physical Engineering · 110/110</h3>
+        <p class="where">Politecnico di Torino</p>
+        <p>Thesis: <em>The predator–prey model: analysis and applications</em> (supervisor: Prof. Marco Morandotti). Stability of nonlinear systems, linearisation and Lyapunov functions, with numerical simulations in MATLAB.</p>
+      </li>
+      <li>
+        <span class="when">Oct 2023 – Jul 2026</span>
+        <h3>Honours programme "Percorso Intraprendenti"</h3>
+        <p class="where">Politecnico di Torino · merit scholarship</p>
+        <p>Additional interdisciplinary courses and team projects alongside the degree.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="sec narrow" id="experience" aria-labelledby="h-ex">
+    <h2 class="sec-h" id="h-ex"><span>03</span>Hands-on experience</h2>
+    <ol class="tl">
+      <li>
+        <span class="when">2024 – 2026</span>
+        <h3>Electronic measurements lab</h3>
+        <p class="where">Politecnico di Torino</p>
+        <p>Built and characterised analog circuits, including operational amplifier stages and a phase-locked loop, with oscilloscopes, spectrum analysers and function generators; looked at how offset, noise and component mismatch show up in the measurements.</p>
+      </li>
+      <li>
+        <span class="when">2025 – 2026</span>
+        <h3>Numerical modelling in MATLAB and Python</h3>
+        <p class="where">Thesis work</p>
+        <p>Wrote ODE solvers and simulations for nonlinear systems in two and three dimensions; the same models now run in the browser on the thesis website.</p>
+      </li>
+    </ol>
+    <dl class="facts" style="margin-top:10px">
+      <dt>Tools</dt><dd>MATLAB, Python, COMSOL Multiphysics, LaTeX, Linux</dd>
+      <dt>Languages</dt><dd>Italian (native), English (C1, IELTS Academic 7.5)</dd>
+    </dl>
+  </section>
+
+  <section class="narrow" id="contact" aria-labelledby="h-ct">
+    <div class="contact">
+      <h2 id="h-ct">Looking for an internship</h2>
+      <p>If your team works on semiconductor devices, processes or circuits and could use a motivated student, I'd be glad to hear from you.</p>
+      <span class="mail" id="mail">singh4002sam@gmail.com</span><button class="copy" id="copy" type="button">Copy</button>
+    </div>
+  </section>
+
+  <footer>© 2026 Satnam Singh · Turin, Italy</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const tok = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function fit(cv) { const r = cv.getBoundingClientRect(), d = devicePixelRatio || 1; const W = Math.max(10, Math.round(r.width * d)), H = Math.max(10, Math.round(r.height * d)); if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; } const c = cv.getContext("2d"); c.setTransform(d, 0, 0, d, 0, 0); return { c, w: r.width, h: r.height }; }
+  function grid(c, w, h, s) { c.fillStyle = tok("--paper"); c.fillRect(0, 0, w, h); c.fillStyle = tok("--grid"); for (let x = 0; x < w; x += s) c.fillRect(Math.round(x), 0, 1, h); for (let y = 0; y < h; y += s) c.fillRect(0, Math.round(y), w, 1); }
+
+  /* Lotka–Volterra orbit (log-space RK4) + time series strip */
+  const LV = (function () {
+    const a = 0.6, b = 0.012, g = 0.5, d = 0.005, orbits = [];
+    [[40, 50], [62, 50], [80, 50]].forEach(([x, y]) => {
+      let u = Math.log(x), v = Math.log(y); const pts = [], u0 = Math.log(g / d), v0 = Math.log(a / b);
+      const f = (u, v) => [a - b * Math.exp(v), -g + d * Math.exp(u)];
+      let ang = 0, prev = Math.atan2(v - v0, u - u0);
+      for (let i = 0; i < 4000; i++) {
+        const th = Math.atan2(v - v0, u - u0); let dth = th - prev; if (dth > Math.PI) dth -= 2 * Math.PI; if (dth < -Math.PI) dth += 2 * Math.PI; ang += dth; prev = th;
+        if (Math.abs(ang) >= 2 * Math.PI) break; const h = 0.02, k1 = f(u, v), k2 = f(u + h / 2 * k1[0], v + h / 2 * k1[1]), k3 = f(u + h / 2 * k2[0], v + h / 2 * k2[1]), k4 = f(u + h * k3[0], v + h * k3[1]); u += h / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]); v += h / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]); pts.push([Math.exp(u), Math.exp(v)]); }
+      orbits.push(pts);
+    });
+    return orbits;
+  })();
+  function drawLV(cv, t) {
+    const { c, w, h } = fit(cv); grid(c, w, h, 16);
+    const pw = w * 0.56, X = (x) => 18 + x / 230 * (pw - 30), Y = (y) => h - 18 - y / 115 * (h - 36);
+    c.strokeStyle = tok("--muted"); c.lineWidth = 1; c.beginPath(); c.moveTo(18, 12); c.lineTo(18, h - 18); c.lineTo(pw, h - 18); c.stroke();
+    LV.forEach((o, k) => { c.strokeStyle = tok("--accent"); c.globalAlpha = k ? 0.35 : 1; c.lineWidth = k ? 1.2 : 2.4; c.beginPath(); o.forEach((p, i) => (i ? c.lineTo(X(p[0]), Y(p[1])) : c.moveTo(X(p[0]), Y(p[1])))); c.stroke(); });
+    c.globalAlpha = 1;
+    const o = LV[0], n = o.length, i = Math.floor(t * 60) % n, p = o[i];
+    c.setLineDash([3, 3]); c.lineWidth = 1.2;
+    c.strokeStyle = tok("--sp1"); c.beginPath(); c.moveTo(X(p[0]), Y(p[1])); c.lineTo(X(p[0]), h - 18); c.stroke();
+    c.strokeStyle = tok("--sp2"); c.beginPath(); c.moveTo(X(p[0]), Y(p[1])); c.lineTo(18, Y(p[1])); c.stroke(); c.setLineDash([]);
+    c.beginPath(); c.arc(X(p[0]), Y(p[1]), 6, 0, 7); c.fillStyle = tok("--ink"); c.fill(); c.lineWidth = 2; c.strokeStyle = tok("--paper"); c.stroke();
+    c.beginPath(); c.arc(X(100), Y(50), 3.5, 0, 7); c.fillStyle = tok("--red"); c.fill();
+    // time series on the right, scrolling
+    const x0 = pw + 18, x1 = w - 14, span = 520;
+    c.strokeStyle = tok("--rule"); c.strokeRect(x0 + 0.5, 12.5, x1 - x0 - 1, h - 31);
+    [[0, "--sp1", 210], [1, "--sp2", 210]].forEach(([k, col, ymax]) => {
+      c.strokeStyle = tok(col); c.lineWidth = 2; c.beginPath();
+      for (let j = 0; j <= span; j += 3) { const q = o[(i - span + j + n * 4) % n]; const xx = x0 + j / span * (x1 - x0), yy = h - 20 - q[k] / ymax * (h - 40); j ? c.lineTo(xx, yy) : c.moveTo(xx, yy); }
+      c.stroke();
+    });
+    c.font = "600 11px 'IBM Plex Sans Condensed', Arial, sans-serif"; c.textBaseline = "top";
+    c.fillStyle = tok("--sp1"); c.fillText("prey", x0 + 8, 18); c.fillStyle = tok("--sp2"); c.fillText("predators", x0 + 40, 18);
+  }
+
+  /* Physics notes: family of projectile trajectories drawn progressively, with range marker */
+  function drawF1(cv, t) {
+    const { c, w, h } = fit(cv); grid(c, w, h, 16);
+    const g0 = h - 26, sx = (w - 50) / 40, v = 19, x0 = 24;
+    c.strokeStyle = tok("--ink"); c.lineWidth = 1.5; c.beginPath(); c.moveTo(12, g0); c.lineTo(w - 12, g0); c.stroke();
+    const angles = [20, 35, 45, 60, 75], cyc = 7, ph = (t % cyc) / cyc;
+    angles.forEach((deg, k) => {
+      const a = deg * Math.PI / 180, T = 2 * v * Math.sin(a) / 9.81, R = v * v * Math.sin(2 * a) / 9.81;
+      const start = k * 0.12, prog = Math.max(0, Math.min(1, (ph - start) / 0.4));
+      if (prog <= 0) return;
+      const is45 = deg === 45;
+      c.strokeStyle = is45 ? tok("--accent") : tok("--muted"); c.globalAlpha = is45 ? 1 : 0.55; c.lineWidth = is45 ? 2.6 : 1.4;
+      c.beginPath();
+      for (let s = 0; s <= 60 * prog; s++) { const tt = T * s / 60, x = x0 + v * Math.cos(a) * tt * sx, y = g0 - (v * Math.sin(a) * tt - 4.905 * tt * tt) * sx; s ? c.lineTo(x, y) : c.moveTo(x, y); }
+      c.stroke(); c.globalAlpha = 1;
+      if (prog >= 1) { c.beginPath(); c.arc(x0 + R * sx, g0, is45 ? 4.5 : 3, 0, 7); c.fillStyle = is45 ? tok("--red") : tok("--muted"); c.fill(); }
+    });
+    c.font = "500 12px 'IBM Plex Mono', monospace"; c.fillStyle = tok("--red"); c.textAlign = "right"; c.textBaseline = "top";
+    c.fillText("R = v₀² sin 2θ / g", w - 16, 14);
+    c.fillStyle = tok("--muted"); c.font = "500 11px 'IBM Plex Mono', monospace"; c.fillText("5.7 · Moto parabolico", w - 16, 32);
+  }
+
+  /* p-n junction band sketch (static) */
+  function drawPN(cv) {
+    const { c, w, h } = fit(cv); grid(c, w, h, 12);
+    const mid = w / 2, wd = w * 0.12;
+    const band = (off, col) => { c.strokeStyle = col; c.lineWidth = 2; c.beginPath(); c.moveTo(8, h * 0.28 + off); c.lineTo(mid - wd, h * 0.28 + off); c.bezierCurveTo(mid, h * 0.28 + off, mid, h * 0.52 + off, mid + wd, h * 0.52 + off); c.lineTo(w - 8, h * 0.52 + off); c.stroke(); };
+    band(0, tok("--accent")); band(h * 0.3, tok("--accent"));
+    c.setLineDash([4, 3]); c.strokeStyle = tok("--red"); c.lineWidth = 1.4; c.beginPath(); c.moveTo(8, h * 0.62); c.lineTo(w - 8, h * 0.62); c.stroke(); c.setLineDash([]);
+    c.font = "600 10px 'IBM Plex Mono', monospace"; c.fillStyle = tok("--muted"); c.fillText("p", 12, h - 8); c.fillText("n", w - 18, h - 8); c.fillStyle = tok("--red"); c.fillText("E_F", w - 30, h * 0.62 - 4);
+  }
+
+  const lv = document.getElementById("pv-lv"), f1 = document.getElementById("pv-f1"), pn = document.getElementById("pv-pn");
+  let t = 0, last = performance.now(), visible = new Set();
+  const io = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? visible.add(e.target) : visible.delete(e.target))));
+  [lv, f1].forEach((el) => io.observe(el));
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now; t += dt;
+    if (visible.has(lv)) drawLV(lv, t); if (visible.has(f1)) drawF1(f1, t);
+    requestAnimationFrame(frame);
+  }
+  function still() { drawLV(lv, 3.2); drawF1(f1, 5.5); drawPN(pn); }
+  still();
+  if (!reduce) requestAnimationFrame(frame);
+  addEventListener("resize", still);
+  new MutationObserver(still).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", still);
+  if (document.fonts) document.fonts.ready.then(still);
+
+  document.getElementById("theme").addEventListener("click", () => {
+    const cur = document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const next = cur === "dark" ? "light" : "dark"; document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("ss-theme", next); } catch (e) {}
+  });
+  const btn = document.getElementById("copy");
+  btn.addEventListener("click", () => {
+    const txt = document.getElementById("mail").textContent;
+    const done = () => { btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy"), 1600); };
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, () => { getSelection().selectAllChildren(document.getElementById("mail")); });
+    else getSelection().selectAllChildren(document.getElementById("mail"));
+  });
+})();
+</script>
+</body>
+</html>
