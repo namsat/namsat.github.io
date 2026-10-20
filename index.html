@@ -9,7 +9,7 @@
 <meta name="author" content="Satnam Singh">
 <link rel="canonical" href="https://namsat.github.io/">
 <meta property="og:title" content="Satnam Singh">
-<meta property="og:description" content="M.Sc. student in Micro and Nanotechnologies for Integrated Systems. Projects: interactive physics notes and a predator–prey model explorer.">
+<meta property="og:description" content="M.Sc. student in Micro and Nanotechnologies for Integrated Systems. Projects: semiconductor device simulations in COMSOL, an interactive predator–prey thesis and physics notes.">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://namsat.github.io/">
 <meta property="og:image" content="https://namsat.github.io/og.png">
@@ -86,10 +86,14 @@ a { color: var(--accent); text-underline-offset: .18em; }
 .tags span { font: 500 .74rem var(--f-mono); color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 1px 8px; }
 .go { font: 600 .92rem var(--f-ui); color: var(--accent); white-space: nowrap; }
 .proj:hover .go { text-decoration: underline; }
-.soon { margin-top: 18px; border: 1.5px dashed var(--rule); border-radius: 14px; padding: 16px 18px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center; }
-.soon canvas { width: 160px; height: 90px; display: block; }
-.soon p { margin: 0; }
-.soon .proj-k { display: block; margin-bottom: 2px; }
+.devices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 18px; }
+.devices .proj-t { font-size: 1.15rem; }
+.devices .proj-d { font-size: .92rem; }
+.proj.todo { border-style: dashed; border-width: 1.5px; cursor: default; }
+.proj.todo:hover { transform: none; box-shadow: none; border-color: var(--rule); }
+.proj.todo .proj-k { color: var(--muted); }
+.ph { aspect-ratio: 16 / 9; border-bottom: 1.5px dashed var(--rule); display: grid; place-items: center; font: 500 .75rem var(--f-mono); color: var(--muted);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 12px 12px; }
 
 /* timeline */
 .tl { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--rule); }
@@ -118,8 +122,7 @@ footer { padding-block: 28px 44px; font: 400 .85rem var(--f-ui); color: var(--mu
   .top nav a.hide-sm { display: none; }
   .facts { grid-template-columns: minmax(0, 1fr); gap: 2px 0; }
   .facts dd { margin-bottom: 10px; }
-  .soon { grid-template-columns: minmax(0, 1fr); }
-  .soon canvas { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+  .devices { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 </style>
@@ -190,6 +193,35 @@ footer { padding-block: 28px 44px; font: 400 .85rem var(--f-ui); color: var(--mu
 
   <section class="sec" id="projects" aria-labelledby="h-proj">
     <h2 class="sec-h" id="h-proj"><span>01</span>Projects</h2>
+    <div class="devices">
+      <div class="proj todo" aria-label="MOSFET, to do">
+        <div class="ph"><span>MOS cross-section · empty</span></div>
+        <div class="proj-b">
+          <span class="proj-k">To do</span>
+          <span class="proj-t">MOSFET</span>
+          <span class="proj-d">Same approach as the p-n junction: MOS capacitor first, then the transistor, compared with the square law and subthreshold model.</span>
+          <span class="proj-f"><span class="tags"><span>COMSOL</span><span>2D</span></span></span>
+        </div>
+      </div>
+      <div class="proj todo" aria-label="BJT, to do">
+        <div class="ph"><span>npn band diagram · empty</span></div>
+        <div class="proj-b">
+          <span class="proj-k">To do</span>
+          <span class="proj-t">BJT</span>
+          <span class="proj-d">npn transistor, Gummel plot, Early effect, compared with Ebers–Moll and Gummel–Poon.</span>
+          <span class="proj-f"><span class="tags"><span>COMSOL</span><span>1D · 2D</span></span></span>
+        </div>
+      </div>
+      <a class="proj" href="https://namsat.github.io/pn.junction/" target="_blank" rel="noopener">
+        <canvas id="pv-pn" aria-label="Sketch of a p-n junction band diagram"></canvas>
+        <div class="proj-b">
+          <span class="proj-k">In progress</span>
+          <span class="proj-t">p-n junction</span>
+          <span class="proj-d">Drift-diffusion typed into COMSOL by hand as three PDEs, no Semiconductor Module. Working notes: parameters, equations, boundary conditions, mistakes. 1D equilibrium done, I-V next.</span>
+          <span class="proj-f"><span class="tags"><span>COMSOL</span><span>drift-diffusion</span></span><span class="go">Notes →</span></span>
+        </div>
+      </a>
+    </div>
     <div class="projects">
       <a class="proj" href="https://namsat.github.io/lotka-volterra/" target="_blank" rel="noopener">
         <canvas id="pv-lv" aria-label="Animated preview: predator–prey orbit and population curves"></canvas>
@@ -209,10 +241,6 @@ footer { padding-block: 28px 44px; font: 400 .85rem var(--f-ui); color: var(--mu
           <span class="proj-f"><span class="tags"><span>14 chapters</span><span>786 equations</span><span>Italian</span></span><span class="go">Open →</span></span>
         </div>
       </a>
-    </div>
-    <div class="soon">
-      <canvas id="pv-pn" aria-label="Sketch of a p-n junction band diagram"></canvas>
-      <p><span class="proj-k">In progress</span>Device simulations in COMSOL: p-n junction, BJT and MOSFET, each compared with the analytical model it should reproduce.</p>
     </div>
   </section>
 
