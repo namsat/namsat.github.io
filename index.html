@@ -369,14 +369,37 @@ footer { padding-block: 28px 44px; font: 400 .85rem var(--f-ui); color: var(--mu
     c.fillStyle = tok("--muted"); c.font = "500 11px 'IBM Plex Mono', monospace"; c.fillText("5.7 · Moto parabolico", w - 16, 32);
   }
 
-  /* p-n junction band sketch (static) */
+  /* p+/n junction at equilibrium, band diagram from the actual model numbers:
+     NA = 1e19, ND = 1e16 cm^-3, ni = 9.65e9, psi: -0.537 V (p+) -> +0.358 V (n), Vbi = 0.895 V,
+     depletion approx: xn = 0.34 um on the n side, xp = 0.3 nm (negligible). Ec/Ev = -psi +/- Eg/2, EF = 0 */
   function drawPN(cv) {
     const { c, w, h } = fit(cv); grid(c, w, h, 12);
-    const mid = w / 2, wd = w * 0.12;
-    const band = (off, col) => { c.strokeStyle = col; c.lineWidth = 2; c.beginPath(); c.moveTo(8, h * 0.28 + off); c.lineTo(mid - wd, h * 0.28 + off); c.bezierCurveTo(mid, h * 0.28 + off, mid, h * 0.52 + off, mid + wd, h * 0.52 + off); c.lineTo(w - 8, h * 0.52 + off); c.stroke(); };
-    band(0, tok("--accent")); band(h * 0.3, tok("--accent"));
-    c.setLineDash([4, 3]); c.strokeStyle = tok("--red"); c.lineWidth = 1.4; c.beginPath(); c.moveTo(8, h * 0.62); c.lineTo(w - 8, h * 0.62); c.stroke(); c.setLineDash([]);
-    c.font = "600 10px 'IBM Plex Mono', monospace"; c.fillStyle = tok("--muted"); c.fillText("p", 12, h - 8); c.fillText("n", w - 18, h - 8); c.fillStyle = tok("--red"); c.fillText("E_F", w - 30, h * 0.62 - 4);
+    const psiP = -0.537, psiN = 0.358, Vbi = psiN - psiP, xn = 0.34, Eg = 1.12;
+    const x0 = -0.35, x1 = 0.95;                              // um window, junction at x = 0
+    const psi = (x) => x <= 0 ? psiP : x >= xn ? psiN : psiP + Vbi * (1 - (1 - x / xn) ** 2);
+    const eTop = 1.2, eBot = -1.02, padL = 34, padR = 12, padT = 14, padB = 22;
+    const X = (x) => padL + (x - x0) / (x1 - x0) * (w - padL - padR);
+    const Y = (e) => padT + (eTop - e) / (eTop - eBot) * (h - padT - padB);
+    // junction + depletion edge
+    c.setLineDash([2, 3]); c.strokeStyle = tok("--muted"); c.lineWidth = 1;
+    [0, xn].forEach((x) => { c.beginPath(); c.moveTo(X(x), padT - 4); c.lineTo(X(x), h - padB + 4); c.stroke(); });
+    // EF
+    c.setLineDash([5, 3]); c.strokeStyle = tok("--red"); c.lineWidth = 1.4;
+    c.beginPath(); c.moveTo(X(x0), Y(0)); c.lineTo(X(x1), Y(0)); c.stroke(); c.setLineDash([]);
+    // Ec, Ev
+    [Eg / 2, -Eg / 2].forEach((off) => {
+      c.strokeStyle = tok("--accent"); c.lineWidth = 2.2; c.beginPath();
+      for (let i = 0; i <= 160; i++) { const x = x0 + (x1 - x0) * i / 160, y = Y(-psi(x) + off); i ? c.lineTo(X(x), y) : c.moveTo(X(x), y); }
+      c.stroke();
+    });
+    c.font = "500 10px 'IBM Plex Mono', monospace"; c.textBaseline = "middle";
+    c.fillStyle = tok("--accent"); c.textAlign = "right";
+    c.fillText("Ec", padL - 5, Y(-psiP + Eg / 2)); c.fillText("Ev", padL - 5, Y(-psiP - Eg / 2));
+    c.fillStyle = tok("--red"); c.textBaseline = "bottom"; c.fillText("EF", X(x1), Y(0) - 3); c.textBaseline = "middle";
+    c.fillStyle = tok("--muted"); c.textAlign = "center"; c.textBaseline = "alphabetic";
+    c.fillText("p+ 1e19", X(-0.2), h - 6); c.fillText("n 1e16", X(0.68), h - 6);
+    c.textAlign = "left"; c.fillText("qVbi ≈ 0.89 eV", X(0.4), Y(-psiN + Eg / 2) - 26);
+    c.textAlign = "start";
   }
 
   const lv = document.getElementById("pv-lv"), f1 = document.getElementById("pv-f1"), pn = document.getElementById("pv-pn");
