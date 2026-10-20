@@ -369,36 +369,52 @@ footer { padding-block: 28px 44px; font: 400 .85rem var(--f-ui); color: var(--mu
     c.fillStyle = tok("--muted"); c.font = "500 11px 'IBM Plex Mono', monospace"; c.fillText("5.7 · Moto parabolico", w - 16, 32);
   }
 
-  /* p+/n junction at equilibrium, band diagram from the actual model numbers:
-     NA = 1e19, ND = 1e16 cm^-3, ni = 9.65e9, psi: -0.537 V (p+) -> +0.358 V (n), Vbi = 0.895 V,
-     depletion approx: xn = 0.34 um on the n side, xp = 0.3 nm (negligible). Ec/Ev = -psi +/- Eg/2, EF = 0 */
+  /* p-n junction at equilibrium, schematic (not to scale):
+     flat EF inside the gap on both sides (near Ev on p, near Ec on n), bands bent by qVbi
+     across the depletion region -xp..xn, ionized charge drawn in it */
   function drawPN(cv) {
     const { c, w, h } = fit(cv); grid(c, w, h, 12);
-    const psiP = -0.537, psiN = 0.358, Vbi = psiN - psiP, xn = 0.34, Eg = 1.12;
-    const x0 = -0.35, x1 = 0.95;                              // um window, junction at x = 0
-    const psi = (x) => x <= 0 ? psiP : x >= xn ? psiN : psiP + Vbi * (1 - (1 - x / xn) ** 2);
-    const eTop = 1.2, eBot = -1.02, padL = 34, padR = 12, padT = 14, padB = 22;
+    const xp = 0.12, xn = 0.34, x0 = -0.5, x1 = 0.85;          // arbitrary units, junction at 0
+    const Vbi = 0.8, Eg = 1.12, dP = 0.16, dN = 0.16;          // EF-Ev on p, Ec-EF on n
+    const lo = -(Eg / 2 - dP), hi = Vbi + lo;                  // -psi on p side and n side, relative
+    const f = (x) => {                                         // band offset vs x (two parabolas)
+      if (x <= -xp) return 0; if (x >= xn) return Vbi;
+      const k = Vbi / (xp * (xp + xn)) * xp;                   // share of Vbi dropped on p side ~ xp/(xp+xn)
+      const vp = Vbi * xp / (xp + xn);
+      return x < 0 ? vp * (1 + x / xp) ** 2 : vp + (Vbi - vp) * (1 - (1 - x / xn) ** 2);
+    };
+    const EcP = Eg - dP, Ec = (x) => EcP - f(x), Ev = (x) => Ec(x) - Eg;
+    const eTop = EcP + 0.12, eBot = Ev(x1) - 0.12, padL = 30, padR = 30, padT = 12, padB = 22;
     const X = (x) => padL + (x - x0) / (x1 - x0) * (w - padL - padR);
     const Y = (e) => padT + (eTop - e) / (eTop - eBot) * (h - padT - padB);
-    // junction + depletion edge
     c.setLineDash([2, 3]); c.strokeStyle = tok("--muted"); c.lineWidth = 1;
-    [0, xn].forEach((x) => { c.beginPath(); c.moveTo(X(x), padT - 4); c.lineTo(X(x), h - padB + 4); c.stroke(); });
-    // EF
+    [-xp, xn].forEach((x) => { c.beginPath(); c.moveTo(X(x), padT); c.lineTo(X(x), h - padB + 4); c.stroke(); });
+    c.setLineDash([]); c.strokeStyle = tok("--rule"); c.beginPath(); c.moveTo(X(0), padT); c.lineTo(X(0), h - padB + 4); c.stroke(); c.setLineDash([2, 3]);
     c.setLineDash([5, 3]); c.strokeStyle = tok("--red"); c.lineWidth = 1.4;
     c.beginPath(); c.moveTo(X(x0), Y(0)); c.lineTo(X(x1), Y(0)); c.stroke(); c.setLineDash([]);
-    // Ec, Ev
-    [Eg / 2, -Eg / 2].forEach((off) => {
+    [Ec, Ev].forEach((F) => {
       c.strokeStyle = tok("--accent"); c.lineWidth = 2.2; c.beginPath();
-      for (let i = 0; i <= 160; i++) { const x = x0 + (x1 - x0) * i / 160, y = Y(-psi(x) + off); i ? c.lineTo(X(x), y) : c.moveTo(X(x), y); }
+      for (let i = 0; i <= 200; i++) { const x = x0 + (x1 - x0) * i / 200; i ? c.lineTo(X(x), Y(F(x))) : c.moveTo(X(x), Y(F(x))); }
       c.stroke();
     });
-    c.font = "500 10px 'IBM Plex Mono', monospace"; c.textBaseline = "middle";
-    c.fillStyle = tok("--accent"); c.textAlign = "right";
-    c.fillText("Ec", padL - 5, Y(-psiP + Eg / 2)); c.fillText("Ev", padL - 5, Y(-psiP - Eg / 2));
-    c.fillStyle = tok("--red"); c.textBaseline = "bottom"; c.fillText("EF", X(x1), Y(0) - 3); c.textBaseline = "middle";
+    // ionized charge in the depletion region, between the bands
+    c.font = "600 11px 'IBM Plex Mono', monospace"; c.textAlign = "center"; c.textBaseline = "middle";
+    c.fillStyle = tok("--muted");
+    for (let x = -xp * 0.7; x < 0; x += xp * 0.45) c.fillText("−", X(x), Y(Ev(x) + Eg * 0.5));
+    c.fillStyle = tok("--red");
+    for (let x = xn * 0.25; x < xn; x += xn * 0.22) c.fillText("+", X(x), Y(Ev(x) + Eg * 0.62));
+    // qVbi arrow on the right
+    const xa = X(x1) + 14; c.strokeStyle = tok("--muted"); c.lineWidth = 1;
+    c.beginPath(); c.moveTo(xa, Y(EcP)); c.lineTo(xa, Y(Ec(x1))); c.stroke();
+    c.setLineDash([2, 3]); c.beginPath(); c.moveTo(X(xn), Y(EcP)); c.lineTo(xa + 4, Y(EcP)); c.stroke(); c.setLineDash([]);
+    c.font = "500 10px 'IBM Plex Mono', monospace";
+    c.fillStyle = tok("--muted"); c.save(); c.translate(xa + 9, (Y(EcP) + Y(Ec(x1))) / 2); c.rotate(-Math.PI / 2); c.fillText("qVbi", 0, 0); c.restore();
+    c.textAlign = "right"; c.fillStyle = tok("--accent");
+    c.fillText("Ec", padL - 5, Y(EcP)); c.fillText("Ev", padL - 5, Y(Ev(x0)));
+    c.fillStyle = tok("--red"); c.fillText("EF", padL - 5, Y(0));
     c.fillStyle = tok("--muted"); c.textAlign = "center"; c.textBaseline = "alphabetic";
-    c.fillText("p+ 1e19", X(-0.2), h - 6); c.fillText("n 1e16", X(0.68), h - 6);
-    c.textAlign = "left"; c.fillText("qVbi ≈ 0.89 eV", X(0.4), Y(-psiN + Eg / 2) - 26);
+    c.fillText("−xp", X(-xp), h - 6); c.fillText("xn", X(xn), h - 6);
+    c.fillText("0", X(0), h - 6); c.fillText("p", X(-0.36), h - 6); c.fillText("n", X(0.68), h - 6);
     c.textAlign = "start";
   }
 
