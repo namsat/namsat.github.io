@@ -5,3 +5,4 @@ Sitemap: https://namsat.github.io/sitemap.xml
 Sitemap: https://namsat.github.io/fisica1/sitemap.xml
 Sitemap: https://namsat.github.io/lotka-volterra/sitemap.xml
 Sitemap: https://namsat.github.io/FMTA/sitemap.xml
+Sitemap: https://namsat.github.io/ssec/sitemap.xml
